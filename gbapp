@@ -1,0 +1,975 @@
+apiVersion: app.k8s.io/v1beta1
+kind: Application
+metadata:
+  name: gb-gbapp
+  namespace: gb-ns
+  annotations:
+    apps.open-cluster-management.io/deployables: ''
+    apps.open-cluster-management.io/subscriptions: 'gb-ns/gb-gbapp-guestbook,gb-ns/gb-gbapp-guestbook-s2'
+    kubectl.kubernetes.io/last-applied-configuration: >
+      {"apiVersion":"app.k8s.io/v1beta1","kind":"Application","metadata":{"annotations":{},"labels":{"app":"gbapp","chart":"gbapp-0.1.0","heritage":"Tiller","release":"gb"},"name":"gb-gbapp","namespace":"gb-ns"},"spec":{"componentKinds":[{"group":"app.ibm.com","kind":"Subscription"}],"selector":{"matchExpressions":[{"key":"release","operator":"In","values":["gb"]}]}}}
+    open-cluster-management.io/user-group: >-
+      c3lzdGVtOnNlcnZpY2VhY2NvdW50cyxzeXN0ZW06c2VydmljZWFjY291bnRzOm9wZW4tY2x1c3Rlci1tYW5hZ2VtZW50LHN5c3RlbTphdXRoZW50aWNhdGVk
+    open-cluster-management.io/user-identity: >-
+      c3lzdGVtOnNlcnZpY2VhY2NvdW50Om9wZW4tY2x1c3Rlci1tYW5hZ2VtZW50Om11bHRpY2x1c3Rlci1vcGVyYXRvcnM=
+  generation: 2
+  labels:
+    app: gbapp
+    chart: gbapp-0.1.0
+    heritage: Tiller
+    release: gb
+  managedFields:
+    - apiVersion: app.k8s.io/v1beta1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:kubectl.kubernetes.io/last-applied-configuration': {}
+          'f:labels':
+            .: {}
+            'f:app': {}
+            'f:chart': {}
+            'f:heritage': {}
+            'f:release': {}
+        'f:spec':
+          .: {}
+          'f:componentKinds': {}
+          'f:selector':
+            .: {}
+            'f:matchExpressions': {}
+      manager: kubectl
+      operation: Update
+      time: '2020-11-03T06:48:20Z'
+    - apiVersion: app.k8s.io/v1beta1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:status':
+          .: {}
+          'f:components': {}
+          'f:observedGeneration': {}
+      manager: ham-application-assembler
+      operation: Update
+      time: '2020-11-03T06:48:33Z'
+    - apiVersion: app.k8s.io/v1beta1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:apps.open-cluster-management.io/deployables': {}
+            'f:apps.open-cluster-management.io/subscriptions': {}
+        'f:spec':
+          'f:descriptor': {}
+      manager: multicluster-operators-application
+      operation: Update
+      time: '2020-11-03T07:38:22Z'
+spec:
+  componentKinds:
+    - group: app.ibm.com
+      kind: Subscription
+  descriptor: {}
+  selector:
+    matchExpressions:
+      - key: release
+        operator: In
+        values:
+          - gb
+---
+apiVersion: app.ibm.com/v1alpha1
+kind: Subscription
+metadata:
+  name: gb-gbapp-guestbook
+  namespace: gb-ns
+  annotations:
+    app.ibm.com/deployables: >-
+      gb-ch-ns/gb-ch-gbchn-redismasterservice,gb-ch-ns/gb-ch-gbchn-redisslave,gb-ch-ns/gb-ch-gbchn-redisslaveservice,gb-ch-ns/gb-ch-gbchn-redismaster
+    app.ibm.com/topo: >-
+      deployable//Deployment//gb-ch-gbchn-redismaster/1,deployable//Service//redis-master/0,deployable//Deployment//gb-ch-gbchn-redisslave/1,deployable//Service//redis-slave/0
+    kubectl.kubernetes.io/last-applied-configuration: >
+      {"apiVersion":"app.ibm.com/v1alpha1","kind":"Subscription","metadata":{"annotations":{},"labels":{"app":"gbapp","chart":"gbapp-0.1.0","heritage":"Tiller","release":"gb"},"name":"gb-gbapp-guestbook","namespace":"gb-ns"},"spec":{"channel":"gb-ch-ns/gb-ch","overrides":[{"clusterName":"/","clusterOverrides":[{"path":"metadata.namespace","value":"default"}]}],"placement":{"placementRef":{"kind":"PlacementRule","name":"gb-gbapp"}}}}
+    open-cluster-management.io/user-group: >-
+      c3lzdGVtOnNlcnZpY2VhY2NvdW50cyxzeXN0ZW06c2VydmljZWFjY291bnRzOm9wZW5zaGlmdC1vcGVyYXRvcnMsc3lzdGVtOmF1dGhlbnRpY2F0ZWQ=
+    open-cluster-management.io/user-identity: >-
+      c3lzdGVtOnNlcnZpY2VhY2NvdW50Om9wZW5zaGlmdC1vcGVyYXRvcnM6aWJtLW1hbmFnZW1lbnQtaHlicmlkYXBw
+  generation: 1
+  labels:
+    app: gbapp
+    chart: gbapp-0.1.0
+    heritage: Tiller
+    release: gb
+  managedFields:
+    - apiVersion: app.ibm.com/v1alpha1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:kubectl.kubernetes.io/last-applied-configuration': {}
+          'f:labels':
+            .: {}
+            'f:app': {}
+            'f:chart': {}
+            'f:heritage': {}
+            'f:release': {}
+        'f:spec':
+          .: {}
+          'f:channel': {}
+          'f:overrides': {}
+          'f:placement':
+            .: {}
+            'f:placementRef':
+              .: {}
+              'f:kind': {}
+              'f:name': {}
+      manager: kubectl
+      operation: Update
+      time: '2020-11-03T06:48:31Z'
+    - apiVersion: app.ibm.com/v1alpha1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:app.ibm.com/deployables': {}
+            'f:app.ibm.com/topo': {}
+            'f:open-cluster-management.io/user-group': {}
+            'f:open-cluster-management.io/user-identity': {}
+        'f:status':
+          .: {}
+          'f:lastUpdateTime': {}
+          'f:message': {}
+          'f:phase': {}
+          'f:statuses':
+            .: {}
+            'f:toronto':
+              .: {}
+              'f:packages':
+                .: {}
+                'f:gb-ch-gbchn-redismaster':
+                  .: {}
+                  'f:lastUpdateTime': {}
+                  'f:phase': {}
+                  'f:resourceStatus':
+                    .: {}
+                    'f:availableReplicas': {}
+                    'f:conditions': {}
+                    'f:observedGeneration': {}
+                    'f:readyReplicas': {}
+                    'f:replicas': {}
+                    'f:updatedReplicas': {}
+                'f:gb-ch-gbchn-redismasterservice':
+                  .: {}
+                  'f:lastUpdateTime': {}
+                  'f:phase': {}
+                  'f:resourceStatus':
+                    .: {}
+                    'f:loadBalancer': {}
+                'f:gb-ch-gbchn-redisslave':
+                  .: {}
+                  'f:lastUpdateTime': {}
+                  'f:phase': {}
+                  'f:resourceStatus':
+                    .: {}
+                    'f:availableReplicas': {}
+                    'f:conditions': {}
+                    'f:observedGeneration': {}
+                    'f:readyReplicas': {}
+                    'f:replicas': {}
+                    'f:updatedReplicas': {}
+                'f:gb-ch-gbchn-redisslaveservice':
+                  .: {}
+                  'f:lastUpdateTime': {}
+                  'f:phase': {}
+                  'f:resourceStatus':
+                    .: {}
+                    'f:loadBalancer': {}
+      manager: ibm-management-hybridapp
+      operation: Update
+      time: '2020-11-03T06:48:52Z'
+spec:
+  channel: gb-ch-ns/gb-ch
+  overrides:
+    - clusterName: /
+      clusterOverrides:
+        - path: metadata.namespace
+          value: default
+  placement:
+    placementRef:
+      name: gb-gbapp
+      kind: PlacementRule
+---
+apiVersion: app.ibm.com/v1alpha1
+kind: PlacementRule
+metadata:
+  name: gb-gbapp
+  namespace: gb-ns
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: >
+      {"apiVersion":"app.ibm.com/v1alpha1","kind":"PlacementRule","metadata":{"annotations":{},"labels":{"app":"gbapp","chart":"gbapp-0.1.0","heritage":"Tiller","release":"gb"},"name":"gb-gbapp","namespace":"gb-ns"},"spec":{"clusterNames":["toronto"]}}
+    open-cluster-management.io/user-group: >-
+      c3lzdGVtOnNlcnZpY2VhY2NvdW50cyxzeXN0ZW06c2VydmljZWFjY291bnRzOm9wZW5zaGlmdC1vcGVyYXRvcnMsc3lzdGVtOmF1dGhlbnRpY2F0ZWQ=
+    open-cluster-management.io/user-identity: >-
+      c3lzdGVtOnNlcnZpY2VhY2NvdW50Om9wZW5zaGlmdC1vcGVyYXRvcnM6aWJtLW1hbmFnZW1lbnQtaHlicmlkYXBw
+  generation: 1
+  labels:
+    app: gbapp
+    chart: gbapp-0.1.0
+    heritage: Tiller
+    release: gb
+  managedFields:
+    - apiVersion: app.ibm.com/v1alpha1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:kubectl.kubernetes.io/last-applied-configuration': {}
+          'f:labels':
+            .: {}
+            'f:app': {}
+            'f:chart': {}
+            'f:heritage': {}
+            'f:release': {}
+        'f:spec':
+          .: {}
+          'f:clusterNames': {}
+      manager: kubectl
+      operation: Update
+      time: '2020-11-03T06:48:26Z'
+    - apiVersion: app.ibm.com/v1alpha1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:open-cluster-management.io/user-group': {}
+            'f:open-cluster-management.io/user-identity': {}
+        'f:status':
+          .: {}
+          'f:decisions': {}
+      manager: ibm-management-hybridapp
+      operation: Update
+      time: '2020-11-03T06:48:27Z'
+spec:
+  clusterNames:
+    - toronto
+---
+apiVersion: app.ibm.com/v1alpha1
+kind: Deployable
+metadata:
+  name: gb-ch-gbchn-redismaster
+  namespace: gb-ch-ns
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: >
+      {"apiVersion":"app.ibm.com/v1alpha1","kind":"Deployable","metadata":{"annotations":{},"labels":{"app":"gbchn","apps.open-cluster-management.io/channel":"gb-ch","apps.open-cluster-management.io/channel-type":"Namespace","chart":"gbchn-0.1.0","heritage":"Tiller","release":"gb-ch"},"name":"gb-ch-gbchn-redismaster","namespace":"gb-ch-ns"},"spec":{"template":{"apiVersion":"apps/v1","kind":"Deployment","metadata":{"name":"gb-ch-gbchn-redismaster"},"spec":{"replicas":1,"selector":{"matchLabels":{"app":"gbchn","release":"gb-ch","role":"master","tier":"backend"}},"template":{"metadata":{"labels":{"app":"gbchn","release":"gb-ch","role":"master","tier":"backend"}},"spec":{"containers":[{"image":"gcr.io/kubernetes-e2e-test-images/redis:1.0","imagePullPolicy":"IfNotPresent","name":"redis","ports":[{"containerPort":6379}]}]}}}}}}
+    open-cluster-management.io/user-group: >-
+      c3lzdGVtOnNlcnZpY2VhY2NvdW50cyxzeXN0ZW06c2VydmljZWFjY291bnRzOm9wZW5zaGlmdC1vcGVyYXRvcnMsc3lzdGVtOmF1dGhlbnRpY2F0ZWQ=
+    open-cluster-management.io/user-identity: >-
+      c3lzdGVtOnNlcnZpY2VhY2NvdW50Om9wZW5zaGlmdC1vcGVyYXRvcnM6aWJtLW1hbmFnZW1lbnQtaHlicmlkYXBw
+  generation: 1
+  labels:
+    app: gbchn
+    app.ibm.com/channel: gb-ch
+    app.ibm.com/channel-type: Namespace
+    chart: gbchn-0.1.0
+    heritage: Tiller
+    release: gb-ch
+  managedFields:
+    - apiVersion: app.ibm.com/v1alpha1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:open-cluster-management.io/user-group': {}
+            'f:open-cluster-management.io/user-identity': {}
+          'f:labels':
+            'f:app.ibm.com/channel': {}
+            'f:app.ibm.com/channel-type': {}
+        'f:status':
+          .: {}
+          'f:phase': {}
+      manager: ibm-management-hybridapp
+      operation: Update
+      time: '2020-11-03T06:48:04Z'
+    - apiVersion: app.ibm.com/v1alpha1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:kubectl.kubernetes.io/last-applied-configuration': {}
+          'f:labels':
+            .: {}
+            'f:app': {}
+            'f:chart': {}
+            'f:heritage': {}
+            'f:release': {}
+        'f:spec':
+          .: {}
+          'f:template':
+            .: {}
+            'f:apiVersion': {}
+            'f:kind': {}
+            'f:metadata':
+              .: {}
+              'f:name': {}
+            'f:spec':
+              .: {}
+              'f:replicas': {}
+              'f:selector':
+                .: {}
+                'f:matchLabels':
+                  .: {}
+                  'f:app': {}
+                  'f:release': {}
+                  'f:role': {}
+                  'f:tier': {}
+              'f:template':
+                .: {}
+                'f:metadata':
+                  .: {}
+                  'f:labels':
+                    .: {}
+                    'f:app': {}
+                    'f:release': {}
+                    'f:role': {}
+                    'f:tier': {}
+                'f:spec':
+                  .: {}
+                  'f:containers': {}
+      manager: kubectl
+      operation: Update
+      time: '2020-11-03T06:48:04Z'
+spec:
+  template:
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: gb-ch-gbchn-redismaster
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: gbchn
+          release: gb-ch
+          role: master
+          tier: backend
+      template:
+        metadata:
+          labels:
+            app: gbchn
+            release: gb-ch
+            role: master
+            tier: backend
+        spec:
+          containers:
+            - name: redis
+              image: 'gcr.io/kubernetes-e2e-test-images/redis:1.0'
+              imagePullPolicy: IfNotPresent
+              ports:
+                - containerPort: 6379
+---
+apiVersion: app.ibm.com/v1alpha1
+kind: Deployable
+metadata:
+  name: gb-ch-gbchn-redismasterservice
+  namespace: gb-ch-ns
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: >
+      {"apiVersion":"app.ibm.com/v1alpha1","kind":"Deployable","metadata":{"annotations":{},"labels":{"app":"gbchn","apps.open-cluster-management.io/channel":"gb-ch","apps.open-cluster-management.io/channel-type":"Namespace","chart":"gbchn-0.1.0","heritage":"Tiller","release":"gb-ch"},"name":"gb-ch-gbchn-redismasterservice","namespace":"gb-ch-ns"},"spec":{"template":{"apiVersion":"v1","kind":"Service","metadata":{"name":"redis-master"},"spec":{"ports":[{"port":6379}],"selector":{"app":"gbchn","release":"gb-ch","role":"master","tier":"backend"},"type":"ClusterIP"}}}}
+    open-cluster-management.io/user-group: >-
+      c3lzdGVtOnNlcnZpY2VhY2NvdW50cyxzeXN0ZW06c2VydmljZWFjY291bnRzOm9wZW5zaGlmdC1vcGVyYXRvcnMsc3lzdGVtOmF1dGhlbnRpY2F0ZWQ=
+    open-cluster-management.io/user-identity: >-
+      c3lzdGVtOnNlcnZpY2VhY2NvdW50Om9wZW5zaGlmdC1vcGVyYXRvcnM6aWJtLW1hbmFnZW1lbnQtaHlicmlkYXBw
+  generation: 1
+  labels:
+    app: gbchn
+    app.ibm.com/channel: gb-ch
+    app.ibm.com/channel-type: Namespace
+    chart: gbchn-0.1.0
+    heritage: Tiller
+    release: gb-ch
+  managedFields:
+    - apiVersion: app.ibm.com/v1alpha1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:open-cluster-management.io/user-group': {}
+            'f:open-cluster-management.io/user-identity': {}
+          'f:labels':
+            'f:app.ibm.com/channel': {}
+            'f:app.ibm.com/channel-type': {}
+        'f:status':
+          .: {}
+          'f:phase': {}
+      manager: ibm-management-hybridapp
+      operation: Update
+      time: '2020-11-03T06:48:04Z'
+    - apiVersion: app.ibm.com/v1alpha1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:kubectl.kubernetes.io/last-applied-configuration': {}
+          'f:labels':
+            .: {}
+            'f:app': {}
+            'f:chart': {}
+            'f:heritage': {}
+            'f:release': {}
+        'f:spec':
+          .: {}
+          'f:template':
+            .: {}
+            'f:apiVersion': {}
+            'f:kind': {}
+            'f:metadata':
+              .: {}
+              'f:name': {}
+            'f:spec':
+              .: {}
+              'f:ports': {}
+              'f:selector':
+                .: {}
+                'f:app': {}
+                'f:release': {}
+                'f:role': {}
+                'f:tier': {}
+              'f:type': {}
+      manager: kubectl
+      operation: Update
+      time: '2020-11-03T06:48:04Z'
+spec:
+  template:
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: redis-master
+    spec:
+      ports:
+        - port: 6379
+      selector:
+        app: gbchn
+        release: gb-ch
+        role: master
+        tier: backend
+      type: ClusterIP
+---
+apiVersion: app.ibm.com/v1alpha1
+kind: Deployable
+metadata:
+  name: gb-ch-gbchn-redisslave
+  namespace: gb-ch-ns
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: >
+      {"apiVersion":"app.ibm.com/v1alpha1","kind":"Deployable","metadata":{"annotations":{},"labels":{"app":"gbchn","apps.open-cluster-management.io/channel":"gb-ch","apps.open-cluster-management.io/channel-type":"Namespace","chart":"gbchn-0.1.0","heritage":"Tiller","release":"gb-ch"},"name":"gb-ch-gbchn-redisslave","namespace":"gb-ch-ns"},"spec":{"template":{"apiVersion":"apps/v1","kind":"Deployment","metadata":{"name":"gb-ch-gbchn-redisslave"},"spec":{"replicas":1,"selector":{"matchLabels":{"app":"gbchn","release":"gb-ch","role":"slave","tier":"backend"}},"template":{"metadata":{"labels":{"app":"gbchn","release":"gb-ch","role":"slave","tier":"backend"}},"spec":{"containers":[{"env":[{"name":"GET_HOSTS_FROM","value":"dns"}],"image":"gcr.io/google_samples/gb-redisslave:v3","imagePullPolicy":"IfNotPresent","name":"gbchn","ports":[{"containerPort":6379}]}]}}}}}}
+    open-cluster-management.io/user-group: >-
+      c3lzdGVtOnNlcnZpY2VhY2NvdW50cyxzeXN0ZW06c2VydmljZWFjY291bnRzOm9wZW5zaGlmdC1vcGVyYXRvcnMsc3lzdGVtOmF1dGhlbnRpY2F0ZWQ=
+    open-cluster-management.io/user-identity: >-
+      c3lzdGVtOnNlcnZpY2VhY2NvdW50Om9wZW5zaGlmdC1vcGVyYXRvcnM6aWJtLW1hbmFnZW1lbnQtaHlicmlkYXBw
+  generation: 1
+  labels:
+    app: gbchn
+    app.ibm.com/channel: gb-ch
+    app.ibm.com/channel-type: Namespace
+    chart: gbchn-0.1.0
+    heritage: Tiller
+    release: gb-ch
+  managedFields:
+    - apiVersion: app.ibm.com/v1alpha1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:open-cluster-management.io/user-group': {}
+            'f:open-cluster-management.io/user-identity': {}
+          'f:labels':
+            'f:app.ibm.com/channel': {}
+            'f:app.ibm.com/channel-type': {}
+        'f:status':
+          .: {}
+          'f:phase': {}
+      manager: ibm-management-hybridapp
+      operation: Update
+      time: '2020-11-03T06:48:04Z'
+    - apiVersion: app.ibm.com/v1alpha1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:kubectl.kubernetes.io/last-applied-configuration': {}
+          'f:labels':
+            .: {}
+            'f:app': {}
+            'f:chart': {}
+            'f:heritage': {}
+            'f:release': {}
+        'f:spec':
+          .: {}
+          'f:template':
+            .: {}
+            'f:apiVersion': {}
+            'f:kind': {}
+            'f:metadata':
+              .: {}
+              'f:name': {}
+            'f:spec':
+              .: {}
+              'f:replicas': {}
+              'f:selector':
+                .: {}
+                'f:matchLabels':
+                  .: {}
+                  'f:app': {}
+                  'f:release': {}
+                  'f:role': {}
+                  'f:tier': {}
+              'f:template':
+                .: {}
+                'f:metadata':
+                  .: {}
+                  'f:labels':
+                    .: {}
+                    'f:app': {}
+                    'f:release': {}
+                    'f:role': {}
+                    'f:tier': {}
+                'f:spec':
+                  .: {}
+                  'f:containers': {}
+      manager: kubectl
+      operation: Update
+      time: '2020-11-03T06:48:04Z'
+spec:
+  template:
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: gb-ch-gbchn-redisslave
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: gbchn
+          release: gb-ch
+          role: slave
+          tier: backend
+      template:
+        metadata:
+          labels:
+            app: gbchn
+            release: gb-ch
+            role: slave
+            tier: backend
+        spec:
+          containers:
+            - name: gbchn
+              env:
+                - name: GET_HOSTS_FROM
+                  value: dns
+              image: 'gcr.io/google_samples/gb-redisslave:v3'
+              imagePullPolicy: IfNotPresent
+              ports:
+                - containerPort: 6379
+---
+apiVersion: app.ibm.com/v1alpha1
+kind: Deployable
+metadata:
+  name: gb-ch-gbchn-redisslaveservice
+  namespace: gb-ch-ns
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: >
+      {"apiVersion":"app.ibm.com/v1alpha1","kind":"Deployable","metadata":{"annotations":{},"labels":{"app":"gbchn","apps.open-cluster-management.io/channel":"gb-ch","apps.open-cluster-management.io/channel-type":"Namespace","chart":"gbchn-0.1.0","heritage":"Tiller","release":"gb-ch"},"name":"gb-ch-gbchn-redisslaveservice","namespace":"gb-ch-ns"},"spec":{"template":{"apiVersion":"v1","kind":"Service","metadata":{"name":"redis-slave"},"spec":{"ports":[{"port":6379}],"selector":{"app":"gbchn","release":"gb-ch","role":"slave","tier":"backend"},"type":"ClusterIP"}}}}
+    open-cluster-management.io/user-group: >-
+      c3lzdGVtOnNlcnZpY2VhY2NvdW50cyxzeXN0ZW06c2VydmljZWFjY291bnRzOm9wZW5zaGlmdC1vcGVyYXRvcnMsc3lzdGVtOmF1dGhlbnRpY2F0ZWQ=
+    open-cluster-management.io/user-identity: >-
+      c3lzdGVtOnNlcnZpY2VhY2NvdW50Om9wZW5zaGlmdC1vcGVyYXRvcnM6aWJtLW1hbmFnZW1lbnQtaHlicmlkYXBw
+  generation: 1
+  labels:
+    app: gbchn
+    app.ibm.com/channel: gb-ch
+    app.ibm.com/channel-type: Namespace
+    chart: gbchn-0.1.0
+    heritage: Tiller
+    release: gb-ch
+  managedFields:
+    - apiVersion: app.ibm.com/v1alpha1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:open-cluster-management.io/user-group': {}
+            'f:open-cluster-management.io/user-identity': {}
+          'f:labels':
+            'f:app.ibm.com/channel': {}
+            'f:app.ibm.com/channel-type': {}
+        'f:status':
+          .: {}
+          'f:phase': {}
+      manager: ibm-management-hybridapp
+      operation: Update
+      time: '2020-11-03T06:48:04Z'
+    - apiVersion: app.ibm.com/v1alpha1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:kubectl.kubernetes.io/last-applied-configuration': {}
+          'f:labels':
+            .: {}
+            'f:app': {}
+            'f:chart': {}
+            'f:heritage': {}
+            'f:release': {}
+        'f:spec':
+          .: {}
+          'f:template':
+            .: {}
+            'f:apiVersion': {}
+            'f:kind': {}
+            'f:metadata':
+              .: {}
+              'f:name': {}
+            'f:spec':
+              .: {}
+              'f:ports': {}
+              'f:selector':
+                .: {}
+                'f:app': {}
+                'f:release': {}
+                'f:role': {}
+                'f:tier': {}
+              'f:type': {}
+      manager: kubectl
+      operation: Update
+      time: '2020-11-03T06:48:04Z'
+spec:
+  template:
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: redis-slave
+    spec:
+      ports:
+        - port: 6379
+      selector:
+        app: gbchn
+        release: gb-ch
+        role: slave
+        tier: backend
+      type: ClusterIP
+---
+apiVersion: app.ibm.com/v1alpha1
+kind: Subscription
+metadata:
+  name: gb-gbapp-guestbook-s2
+  namespace: gb-ns
+  annotations:
+    app.ibm.com/deployables: 'gb-ch-ns2/gb-ch-gbchn-frontend,gb-ch-ns2/gb-ch-gbchn-frontend-service'
+    app.ibm.com/topo: >-
+      deployable//Deployment//gb-ch-gbchn-frontend/1,deployable//Service//gb-ch-gbchn/0
+    kubectl.kubernetes.io/last-applied-configuration: >
+      {"apiVersion":"app.ibm.com/v1alpha1","kind":"Subscription","metadata":{"annotations":{},"labels":{"app":"gbapp","chart":"gbapp-0.1.0","heritage":"Tiller","release":"gb"},"name":"gb-gbapp-guestbook-s2","namespace":"gb-ns"},"spec":{"channel":"gb-ch-ns2/gb-ch2","overrides":[{"clusterName":"/","clusterOverrides":[{"path":"metadata.namespace","value":"default"}]}],"placement":{"placementRef":{"kind":"PlacementRule","name":"gb-gbapp"}}}}
+    open-cluster-management.io/user-group: >-
+      c3lzdGVtOnNlcnZpY2VhY2NvdW50cyxzeXN0ZW06c2VydmljZWFjY291bnRzOm9wZW5zaGlmdC1vcGVyYXRvcnMsc3lzdGVtOmF1dGhlbnRpY2F0ZWQ=
+    open-cluster-management.io/user-identity: >-
+      c3lzdGVtOnNlcnZpY2VhY2NvdW50Om9wZW5zaGlmdC1vcGVyYXRvcnM6aWJtLW1hbmFnZW1lbnQtaHlicmlkYXBw
+  generation: 1
+  labels:
+    app: gbapp
+    chart: gbapp-0.1.0
+    heritage: Tiller
+    release: gb
+  managedFields:
+    - apiVersion: app.ibm.com/v1alpha1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:kubectl.kubernetes.io/last-applied-configuration': {}
+          'f:labels':
+            .: {}
+            'f:app': {}
+            'f:chart': {}
+            'f:heritage': {}
+            'f:release': {}
+        'f:spec':
+          .: {}
+          'f:channel': {}
+          'f:overrides': {}
+          'f:placement':
+            .: {}
+            'f:placementRef':
+              .: {}
+              'f:kind': {}
+              'f:name': {}
+      manager: kubectl
+      operation: Update
+      time: '2020-11-03T06:48:31Z'
+    - apiVersion: app.ibm.com/v1alpha1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:app.ibm.com/deployables': {}
+            'f:app.ibm.com/topo': {}
+            'f:open-cluster-management.io/user-group': {}
+            'f:open-cluster-management.io/user-identity': {}
+        'f:status':
+          .: {}
+          'f:lastUpdateTime': {}
+          'f:message': {}
+          'f:phase': {}
+          'f:statuses':
+            .: {}
+            'f:toronto':
+              .: {}
+              'f:packages':
+                .: {}
+                'f:gb-ch-gbchn-frontend':
+                  .: {}
+                  'f:lastUpdateTime': {}
+                  'f:phase': {}
+                  'f:resourceStatus':
+                    .: {}
+                    'f:availableReplicas': {}
+                    'f:conditions': {}
+                    'f:observedGeneration': {}
+                    'f:readyReplicas': {}
+                    'f:replicas': {}
+                    'f:updatedReplicas': {}
+                'f:gb-ch-gbchn-frontend-service':
+                  .: {}
+                  'f:lastUpdateTime': {}
+                  'f:phase': {}
+                  'f:resourceStatus':
+                    .: {}
+                    'f:loadBalancer': {}
+      manager: ibm-management-hybridapp
+      operation: Update
+      time: '2020-11-03T06:49:24Z'
+spec:
+  channel: gb-ch-ns2/gb-ch2
+  overrides:
+    - clusterName: /
+      clusterOverrides:
+        - path: metadata.namespace
+          value: default
+  placement:
+    placementRef:
+      name: gb-gbapp
+      kind: PlacementRule
+---
+apiVersion: app.ibm.com/v1alpha1
+kind: Deployable
+metadata:
+  name: gb-ch-gbchn-frontend
+  namespace: gb-ch-ns2
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: >
+      {"apiVersion":"app.ibm.com/v1alpha1","kind":"Deployable","metadata":{"annotations":{},"labels":{"app":"gbchn","apps.open-cluster-management.io/channel":"gb-ch2","apps.open-cluster-management.io/channel-type":"Namespace","chart":"gbchn-0.1.0","heritage":"Tiller","release":"gb-ch"},"name":"gb-ch-gbchn-frontend","namespace":"gb-ch-ns2"},"spec":{"template":{"apiVersion":"apps/v1","kind":"Deployment","metadata":{"name":"gb-ch-gbchn-frontend"},"spec":{"replicas":1,"selector":{"matchLabels":{"app":"gbchn","release":"gb-ch","tier":"frontend"}},"template":{"metadata":{"labels":{"app":"gbchn","release":"gb-ch","tier":"frontend"}},"spec":{"containers":[{"env":[{"name":"GET_HOSTS_FROM","value":"dns"}],"image":"gcr.io/google-samples/gb-frontend:v6","imagePullPolicy":"IfNotPresent","name":"frontend","ports":[{"containerPort":80}]}]}}}}}}
+    open-cluster-management.io/user-group: >-
+      c3lzdGVtOnNlcnZpY2VhY2NvdW50cyxzeXN0ZW06c2VydmljZWFjY291bnRzOm9wZW5zaGlmdC1vcGVyYXRvcnMsc3lzdGVtOmF1dGhlbnRpY2F0ZWQ=
+    open-cluster-management.io/user-identity: >-
+      c3lzdGVtOnNlcnZpY2VhY2NvdW50Om9wZW5zaGlmdC1vcGVyYXRvcnM6aWJtLW1hbmFnZW1lbnQtaHlicmlkYXBw
+  generation: 1
+  labels:
+    app: gbchn
+    app.ibm.com/channel: gb-ch2
+    app.ibm.com/channel-type: Namespace
+    chart: gbchn-0.1.0
+    heritage: Tiller
+    release: gb-ch
+  managedFields:
+    - apiVersion: app.ibm.com/v1alpha1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:open-cluster-management.io/user-group': {}
+            'f:open-cluster-management.io/user-identity': {}
+          'f:labels':
+            'f:app.ibm.com/channel': {}
+            'f:app.ibm.com/channel-type': {}
+        'f:status':
+          .: {}
+          'f:phase': {}
+      manager: ibm-management-hybridapp
+      operation: Update
+      time: '2020-11-03T06:48:04Z'
+    - apiVersion: app.ibm.com/v1alpha1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:kubectl.kubernetes.io/last-applied-configuration': {}
+          'f:labels':
+            .: {}
+            'f:app': {}
+            'f:chart': {}
+            'f:heritage': {}
+            'f:release': {}
+        'f:spec':
+          .: {}
+          'f:template':
+            .: {}
+            'f:apiVersion': {}
+            'f:kind': {}
+            'f:metadata':
+              .: {}
+              'f:name': {}
+            'f:spec':
+              .: {}
+              'f:replicas': {}
+              'f:selector':
+                .: {}
+                'f:matchLabels':
+                  .: {}
+                  'f:app': {}
+                  'f:release': {}
+                  'f:tier': {}
+              'f:template':
+                .: {}
+                'f:metadata':
+                  .: {}
+                  'f:labels':
+                    .: {}
+                    'f:app': {}
+                    'f:release': {}
+                    'f:tier': {}
+                'f:spec':
+                  .: {}
+                  'f:containers': {}
+      manager: kubectl
+      operation: Update
+      time: '2020-11-03T06:48:04Z'
+spec:
+  template:
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: gb-ch-gbchn-frontend
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: gbchn
+          release: gb-ch
+          tier: frontend
+      template:
+        metadata:
+          labels:
+            app: gbchn
+            release: gb-ch
+            tier: frontend
+        spec:
+          containers:
+            - name: frontend
+              env:
+                - name: GET_HOSTS_FROM
+                  value: dns
+              image: 'gcr.io/google-samples/gb-frontend:v6'
+              imagePullPolicy: IfNotPresent
+              ports:
+                - containerPort: 80
+---
+apiVersion: app.ibm.com/v1alpha1
+kind: Deployable
+metadata:
+  name: gb-ch-gbchn-frontend-service
+  namespace: gb-ch-ns2
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: >
+      {"apiVersion":"app.ibm.com/v1alpha1","kind":"Deployable","metadata":{"annotations":{},"labels":{"app":"gbchn","apps.open-cluster-management.io/channel":"gb-ch2","apps.open-cluster-management.io/channel-type":"Namespace","chart":"gbchn-0.1.0","heritage":"Tiller","release":"gb-ch"},"name":"gb-ch-gbchn-frontend-service","namespace":"gb-ch-ns2"},"spec":{"template":{"apiVersion":"v1","kind":"Service","metadata":{"labels":{"app":"gbchn","chart":"gbchn-0.1.0","heritage":"Tiller","release":"gb-ch"},"name":"gb-ch-gbchn"},"spec":{"ports":[{"port":80}],"selector":{"app":"gbchn","release":"gb-ch","tier":"frontend"},"type":"NodePort"}}}}
+    open-cluster-management.io/user-group: >-
+      c3lzdGVtOnNlcnZpY2VhY2NvdW50cyxzeXN0ZW06c2VydmljZWFjY291bnRzOm9wZW5zaGlmdC1vcGVyYXRvcnMsc3lzdGVtOmF1dGhlbnRpY2F0ZWQ=
+    open-cluster-management.io/user-identity: >-
+      c3lzdGVtOnNlcnZpY2VhY2NvdW50Om9wZW5zaGlmdC1vcGVyYXRvcnM6aWJtLW1hbmFnZW1lbnQtaHlicmlkYXBw
+  generation: 1
+  labels:
+    app: gbchn
+    app.ibm.com/channel: gb-ch2
+    app.ibm.com/channel-type: Namespace
+    chart: gbchn-0.1.0
+    heritage: Tiller
+    release: gb-ch
+  managedFields:
+    - apiVersion: app.ibm.com/v1alpha1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:open-cluster-management.io/user-group': {}
+            'f:open-cluster-management.io/user-identity': {}
+          'f:labels':
+            'f:app.ibm.com/channel': {}
+            'f:app.ibm.com/channel-type': {}
+        'f:status':
+          .: {}
+          'f:phase': {}
+      manager: ibm-management-hybridapp
+      operation: Update
+      time: '2020-11-03T06:48:04Z'
+    - apiVersion: app.ibm.com/v1alpha1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:kubectl.kubernetes.io/last-applied-configuration': {}
+          'f:labels':
+            .: {}
+            'f:app': {}
+            'f:chart': {}
+            'f:heritage': {}
+            'f:release': {}
+        'f:spec':
+          .: {}
+          'f:template':
+            .: {}
+            'f:apiVersion': {}
+            'f:kind': {}
+            'f:metadata':
+              .: {}
+              'f:labels':
+                .: {}
+                'f:app': {}
+                'f:chart': {}
+                'f:heritage': {}
+                'f:release': {}
+              'f:name': {}
+            'f:spec':
+              .: {}
+              'f:ports': {}
+              'f:selector':
+                .: {}
+                'f:app': {}
+                'f:release': {}
+                'f:tier': {}
+              'f:type': {}
+      manager: kubectl
+      operation: Update
+      time: '2020-11-03T06:48:04Z'
+spec:
+  template:
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: gb-ch-gbchn
+      labels:
+        app: gbchn
+        chart: gbchn-0.1.0
+        heritage: Tiller
+        release: gb-ch
+    spec:
+      ports:
+        - port: 80
+      selector:
+        app: gbchn
+        release: gb-ch
+        tier: frontend
+      type: NodePort
